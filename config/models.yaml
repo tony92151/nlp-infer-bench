@@ -1,0 +1,43 @@
+# Simplified model configuration for Optimum CLI
+# This replaces the complex models.yaml with a much simpler structure
+
+models:
+  bert-base-uncased:
+    source: "bert-base-uncased"
+    task: "feature-extraction"  # Use feature-extraction for general purpose
+    optimization:
+      onnx:
+        opset_version: 14
+      openvino:
+        precision: "FP16"
+    
+  deberta-base:
+    source: "microsoft/deberta-base"
+    task: "feature-extraction"
+    optimization:
+      onnx:
+        opset_version: 14
+      openvino:
+        precision: "FP16"
+        
+  modernbert-base:
+    source: "answerdotai/ModernBERT-base"
+    task: "feature-extraction"
+    optimization:
+      onnx:
+        opset_version: 14
+      openvino:
+        precision: "FP16"
+
+# Validation settings (simplified)
+validation:
+  sample_texts:
+    - "This movie is absolutely fantastic!"
+    - "I hate this boring film."
+    - "The weather is nice today."
+
+# Note: Most configuration is now handled automatically by Optimum CLI
+# - No need for complex input_shape definitions
+# - No need for manual dynamic_axes configuration
+# - No need for detailed conversion_settings
+# - Optimum handles tokenizer and model config automatically

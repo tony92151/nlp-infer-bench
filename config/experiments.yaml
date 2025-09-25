@@ -1,0 +1,46 @@
+# Experiment configuration file
+experiments:
+  # Basic experiment settings
+  sample_size: 1000  # Number of samples per experiment
+  batch_sizes: [1, 8, 16, 32]  # Batch sizes to test
+  repeat_times: 3  # Number of repetitions for each configuration
+  
+  # Model configuration
+  models:
+    - name: "bert-base-uncased"
+      frameworks: ["pytorch", "onnx", "openvino"]
+    - name: "deberta-base" 
+      frameworks: ["pytorch", "onnx", "openvino"]
+    - name: "modernbert-base"
+      frameworks: ["pytorch", "onnx", "openvino"]
+  
+  # Dataset configuration
+  datasets:
+    - name: "imdb"
+      task: "sentiment"
+      num_labels: 2
+    - name: "sst2"
+      task: "sentiment" 
+      num_labels: 2
+    - name: "ag_news"
+      task: "classification"
+      num_labels: 4
+
+# AWS Batch configuration
+aws_batch:
+  job_queue: "inference-benchmark-queue"
+  job_definition: "inference-benchmark-job"
+  instance_types: ["c7i.2xlarge", "i3.2xlarge"]
+  max_vcpus: 100
+
+# Results configuration
+results:
+  s3_bucket: "inference-models-bucket"
+  s3_prefix: "experiments/"
+  metrics:
+    - "latency_mean"
+    - "latency_p95"
+    - "throughput"
+    - "accuracy"
+    - "memory_usage"
+    - "cpu_usage"

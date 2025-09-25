@@ -1,0 +1,86 @@
+# Model configuration file
+models:
+  bert-base-uncased:
+    source: "bert-base-uncased"
+    task: "text-classification"
+    input_shape: [1, 512]
+    precision: "fp32"
+    num_labels: 2
+    optimization:
+      onnx:
+        opset_version: 14
+        dynamic_axes: 
+          input_ids: {0: "batch_size", 1: "sequence"}
+          attention_mask: {0: "batch_size", 1: "sequence"}
+          logits: {0: "batch_size"}
+        optimization_level: "all"
+      openvino:
+        precision: "FP16"
+        optimization_level: "PERFORMANCE"
+        device: "CPU"
+    
+  deberta-base:
+    source: "microsoft/deberta-base"
+    task: "text-classification"
+    input_shape: [1, 512]
+    precision: "fp32"
+    num_labels: 2
+    optimization:
+      onnx:
+        opset_version: 14
+        dynamic_axes:
+          input_ids: {0: "batch_size", 1: "sequence"}
+          attention_mask: {0: "batch_size", 1: "sequence"}
+          logits: {0: "batch_size"}
+        optimization_level: "all"
+      openvino:
+        precision: "FP16"
+        optimization_level: "PERFORMANCE"
+        device: "CPU"
+        
+  modernbert-base:
+    source: "answerdotai/ModernBERT-base"
+    task: "text-classification"
+    input_shape: [1, 512]
+    precision: "fp32"
+    num_labels: 2
+    optimization:
+      onnx:
+        opset_version: 14
+        dynamic_axes:
+          input_ids: {0: "batch_size", 1: "sequence"}
+          attention_mask: {0: "batch_size", 1: "sequence"}
+          logits: {0: "batch_size"}
+        optimization_level: "all"
+      openvino:
+        precision: "FP16"
+        optimization_level: "PERFORMANCE"
+        device: "CPU"
+
+# Conversion settings
+conversion_settings:
+  pytorch:
+    torch_script: false
+    trace_mode: false
+  
+  onnx:
+    export_params: true
+    do_constant_folding: true
+    input_names: ["input_ids", "attention_mask"]
+    output_names: ["logits"]
+    verbose: false
+    
+  openvino:
+    input_model_is_text: false
+    compress_to_fp16: true
+    mean_values: []
+    scale_values: []
+
+# Validation settings
+validation:
+  sample_texts:
+    - "This movie is absolutely fantastic!"
+    - "I hate this boring film."
+    - "The weather is nice today."
+  tolerance: 1e-4
+  max_diff_percentage: 0.1
