@@ -2,6 +2,10 @@ name: OIDC example
 
 on:
   workflow_dispatch:
+    inputs:
+      bucket-name:
+        description: 'The name of the S3 bucket to list'
+        required: true
 
 permissions:
   id-token: write
@@ -23,4 +27,4 @@ jobs:
 
       - name: List S3 buckets
         run: |
-          aws s3 ls
+          aws s3 ls s3://${{ github.event.inputs.bucket-name }}
