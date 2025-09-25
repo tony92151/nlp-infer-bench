@@ -1,9 +1,9 @@
 [project]
-name = "auto-inference"
+name = "nlp-infer-bench"
 version = "0.1.0"
 description = "Inference framework comparison tool for NLP models"
 authors = [
-    {name = "Tony Kuo", email = "tony@example.com"}
+    {name = "Tony Kuo", email = "tony92151@gmail.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.12"
