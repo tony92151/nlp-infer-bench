@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nlp-infer-bench"
+version = "0.1.0"
+description = "Toolkit for converting NLP models to multiple inference frameworks"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+  { name = "NLP Infer Bench Maintainers" }
+]
+dependencies = [
+  "boto3",
+  "pyyaml",
+  "huggingface_hub",
+  "transformers",
+  "torch",
+  "optimum[onnxruntime,openvino]",
+  "onnxruntime",
+  "openvino",
+]
+
+[tool.uv]
+package = true

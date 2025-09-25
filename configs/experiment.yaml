@@ -1,0 +1,25 @@
+# Configuration for the model conversion workflow
+experiment_name: nlp-infer-bench-demo
+model_bucket: s3://your-model-bucket/nlp-infer-bench/models
+model_registry: configs/model_registry.yaml
+conversion:
+  frameworks:
+    - transformers
+    - onnx-runtime
+    - openvino
+  precision: fp32
+  overwrite: false
+  local_cache: artifacts/converted_models
+models:
+  - name: bert-base-uncased
+    task: text-classification
+    revision: main
+    source: huggingface
+  - name: microsoft/deberta-v3-base
+    task: text-classification
+    revision: main
+    source: huggingface
+  - name: ansaripro/modernbert-base
+    task: text-classification
+    revision: main
+    source: huggingface
