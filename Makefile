@@ -57,13 +57,13 @@ download:
 
 # Download specific models
 download-bert:
-	huggingface-cli download bert-base-uncased --local-dir $(LOCAL_MODELS_DIR)/bert-base-uncased/pytorch --local-dir-use-symlinks False
+	uv run huggingface-cli download bert-base-uncased --local-dir $(LOCAL_MODELS_DIR)/bert-base-uncased/pytorch --local-dir-use-symlinks False
 
 download-deberta:
-	huggingface-cli download microsoft/deberta-base --local-dir $(LOCAL_MODELS_DIR)/deberta-base/pytorch --local-dir-use-symlinks False
+	uv run huggingface-cli download microsoft/deberta-v3-base --local-dir $(LOCAL_MODELS_DIR)/deberta-v3-base/pytorch --local-dir-use-symlinks False
 
 download-modernbert:
-	huggingface-cli download answerdotai/ModernBERT-base --local-dir $(LOCAL_MODELS_DIR)/modernbert-base/pytorch --local-dir-use-symlinks False
+	uv run huggingface-cli download answerdotai/ModernBERT-base --local-dir $(LOCAL_MODELS_DIR)/modernbert-base/pytorch --local-dir-use-symlinks False
 
 # Convert all models using Optimum CLI
 convert:
