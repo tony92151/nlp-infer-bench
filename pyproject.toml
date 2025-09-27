@@ -4,4 +4,24 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "torch>=2.0.0",
+    "transformers>=4.30.0",
+    "tokenizers>=0.13.0",
+    "numpy>=1.21.0",
+    "pyyaml>=6.0",
+    # AWS dependencies
+    "boto3>=1.26.0",
+    "botocore>=1.29.0",
+    # Utilities
+    "tqdm>=4.64.0",
+    "pandas>=1.5.0",
+    "matplotlib>=3.6.0",
+    "seaborn>=0.11.0",
+    "optimum[onnxruntime,openvino]>=1.16.0",
+    "huggingface_hub[cli]>=0.19.0",
+    "pytest>=7.0.0",
+    "black>=22.0.0",
+    "flake8>=5.0.0",
+    "mypy>=1.0.0",
+]

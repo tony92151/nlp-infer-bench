@@ -1,0 +1,10 @@
+# S3 storage configuration
+s3_config:
+  bucket: "inference-models-bucket"
+  region: "us-west-2"
+  profile: "default"  # AWS CLI profile
+  
+# Storage structure design
+storage_structure:
+  models_path: "models/"
+  experiments_path: "experiments/"
